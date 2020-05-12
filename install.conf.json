@@ -1,0 +1,23 @@
+[
+    {
+        "clean": [
+            "~",
+            "~/bin/"
+        ]
+    },
+    {
+        "shell": [
+            ["mkdir -p ~/bin/ ", "Creating dirs."]
+        ]
+    },
+    {
+        "link": {
+            "~/.vimrc":"vimrc"
+        }
+    },
+    {
+        "shell": [
+            ["git submodule update --init --recursive", "Installing/updating submodules"]
+        ]
+    }
+]
