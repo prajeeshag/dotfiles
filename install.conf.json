@@ -1,28 +1,19 @@
 [
     {
         "clean": [
-            "~",
-            "~/bin/"
-        ]
-    },
-    {
-        "shell": [
-            ["mkdir -p ~/.vim/autoload/ ~/bin/ ", "Creating dirs."]
+            "~"
         ]
     },
     {
         "link": {
-            "~/.vimrc":"vimrc"
+            "~/.vimrc":"vimrc",
+						"~/.vim":"vim"
         }
     },
     {
         "shell": [
-            ["git submodule update --init --recursive", "Installing/updating submodules"]
+            ["git submodule update --init --recursive", "Installing/updating submodules"],
+						["cp vim-plug/plug.vim vim/autoload/","Coping plug.vim"]
         ]
-    },
-    {
-        "link": {
-            "~/.vim/autoload/plug.vim":"vim-plug/plug.vim"
-        }
     }
 ]
