@@ -8,25 +8,8 @@ set nowritebackup
 set nocompatible
 let mapleader=" "
 
-call plug#begin('~/.vim/plugged')
-
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	"Plug 'Chiel92/vim-autoformat'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
-	Plug 'altercation/vim-colors-solarized'
-  Plug 'tpope/vim-surround'	
-	Plug 'morhetz/gruvbox'
-	Plug 'dense-analysis/ale'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'preservim/nerdcommenter'
-call plug#end()
-
+execute pathogen#infect()
+syntax on
 filetype plugin indent on
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.

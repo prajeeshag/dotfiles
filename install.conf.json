@@ -12,8 +12,7 @@
     },
     {
         "shell": [
-            ["git submodule update --init --recursive", "Installing/updating submodules"],
-						["cp vim-plug/plug.vim vim/autoload/","Coping plug.vim"]
+            ["git submodule update --init --recursive", "Installing/updating submodules"]
         ]
     }
 ]
