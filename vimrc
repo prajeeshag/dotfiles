@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 set ts=2
 set sts=2
 set sw=2
@@ -6,11 +8,63 @@ set hidden
 set nobackup
 set nowritebackup
 set nocompatible
-let mapleader=" "
+set clipboard=unnamed
+set wildmenu
 
-execute pathogen#infect()
+let mapleader=","
+
+" Don’t add empty newlines at the end of files
+set binary
+set noeol
+" Centralize backups, swapfiles and undo history
+set backupdir=~/.vim/backups
+if exists("&undodir")
+	set undodir=~/.vim/undo
+endif
+
+" Don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
+
+" Show “invisible” characters
+set lcs=tab:▸\
+set list
+
+" Highlight searches
+set hlsearch
+
+" Show the cursor position
+set ruler
+
 syntax on
 filetype plugin indent on
+
+" Show the (partial) command as it’s being typed
+set showcmd
+" Use relative line numbers
+if exists("&relativenumber")
+	set relativenumber
+	au BufReadPost * set relativenumber
+endif
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+
+set background=dark
+colorscheme solarized
+set t_co=256
+call togglebg#map("<f5>")
+
+
+set shortmess+=i
+set number
+set relativenumber
+set laststatus=2
+set backspace=indent,eol,start
+set ignorecase
+set smartcase
+set incsearch
+nmap q <nop>
+set noerrorbells visualbell t_vb=
+
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -27,46 +81,23 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-set background=dark
-colorscheme solarized
-set t_Co=256
-call togglebg#map("<F5>")
-
-
-set shortmess+=I
-set number
-set relativenumber
-set laststatus=2
-set backspace=indent,eol,start
-set ignorecase
-set smartcase
-set incsearch
-nmap Q <Nop>
-set noerrorbells visualbell t_vb=
-
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
+nnoremap <left>  :echoe "use h"<cr>
+nnoremap <right> :echoe "use l"<cr>
+nnoremap <up>    :echoe "use k"<cr>
+nnoremap <down>  :echoe "use j"<cr>
 " ...and in insert mode
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
+inoremap <left>  <esc>:echoe "use h"<cr>
+inoremap <right> <esc>:echoe "use l"<cr>
+inoremap <up>    <esc>:echoe "use k"<cr>
+inoremap <down>  <esc>:echoe "use j"<cr>
 
 " quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
-"nmap <silent> <Leader>j <Plug>(coc-diagnostic-next)
-"nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev)
-nmap <silent> <Leader>j <Plug>(ale_next_wrap)
-nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
-
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'sh': ['shfmt'],
-\   'fortran': ['/home/cccr/prajeesh/miniconda3/bin/fprettify'],
-\}
+nmap <silent> <leader>j <plug>(coc-diagnostic-next)
+nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
+"nmap <silent> <leader>j <plug>(ale_next_wrap)
+"nmap <silent> <leader>k <plug>(ale_previous_wrap)
