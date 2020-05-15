@@ -1,0 +1,16 @@
+
+- clean: ['~']
+        
+- link:
+    ~/.vimrc:
+    ~/.vim:  
+    ~/.zshrc:
+        if: '[ `hostname` = "Prajeeshs-MacBook-Air.local" ]'
+    ~/.bashrc:
+        if: '[ `hostname` = Linux ]'
+    ~/.functions:
+    ~/.aliases:
+    ~/.exports:
+
+- shell:
+    - [git submodule update --init --recursive, Installing/updating submodules]
