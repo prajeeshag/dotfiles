@@ -14,3 +14,4 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing/updating submodules]
+    - [vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"]

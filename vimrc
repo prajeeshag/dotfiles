@@ -1,4 +1,18 @@
-execute pathogen#infect()
+
+call plug#begin('~/.vim_plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+
+call plug#end()
 
 set ts=2
 set sts=2
@@ -8,7 +22,6 @@ set hidden
 set nobackup
 set nowritebackup
 set nocompatible
-set clipboard=unnamed
 set wildmenu
 
 let mapleader=","
@@ -26,8 +39,8 @@ endif
 set backupskip=/tmp/*,/private/tmp/*
 
 " Show “invisible” characters
-set lcs=tab:▸\
-set list
+"set lcs=tab:▸\
+"set list
 
 " Highlight searches
 set hlsearch
@@ -48,7 +61,7 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
-set background=dark
+"set background=dark
 colorscheme solarized
 set t_co=256
 call togglebg#map("<f5>")
@@ -101,3 +114,10 @@ nmap <silent> <leader>j <plug>(coc-diagnostic-next)
 nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
 "nmap <silent> <leader>j <plug>(ale_next_wrap)
 "nmap <silent> <leader>k <plug>(ale_previous_wrap)
+"
+"# List of Coc extensions to be auto installed
+let g:coc_global_extensions = [
+      \'coc-markdownlint', 'coc-python', 'coc-explorer',
+      \'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
+      \'coc-diagnostic', 'coc-marketplace', 'coc-sh'
+      \]
