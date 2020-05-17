@@ -1,44 +1,37 @@
 {
-  "suggest.noselect": false,
-  "languageserver": {
-    "fortran": {
-      "command": "fortls",
-      "args": [
-        "--lowercase_intrinsics"
-      ],
-      "filetypes": [
-        "fortran"
-      ],
-      "rootPatterns": [
-        ".fortls",
-        ".git/"
-      ]
-    }
-  },
-  "diagnostic-languageserver.filetypes": {
-    // lint `sh` (includes `bash`) files
-    "sh": "shellcheck"
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    // format `sh` (includes `bash`) files using formatter defined below
-    "sh": "shfmt"
-  },
-  "diagnostic-languageserver.formatters": {
-    // define our formatter so that we can reference it from
-    // `diagnostic-languageserver.formatFiletypes`
-    "shfmt": {
-      "command": "shfmt",
-      // all the below args are entirely optional
-      // primarily listed here to call out that flags which take an
-      // argument (such as `-i <num-spaces>` for specifying indentation)
-      // should be split into two strings, the flag and then the value
-      "args": [
-        "-i",
-        "2",
-        "-bn",
-        "-ci",
-        "-sr"
-      ]
-    }
-  },
+	"suggest.noselect": false,
+
+	"languageserver": {
+		"fortran": {
+			"command": "fortls",
+			"args": [
+				"--lowercase_intrinsics"
+			],
+			"filetypes": [
+				"fortran"
+			],
+			"rootPatterns": [
+				".fortls",
+				".git/"
+			]
+		}
+	},
+
+	"diagnostic-languageserver.filetypes": {
+		"vim": "vint",
+		"email": "languagetool",
+		"markdown": [ "write-good", "markdownlint" ],
+		"sh": "shellcheck"
+	},
+
+	"diagnostic-languageserver.formatFiletypes": {
+		"sh": "shfmt"
+	},
+
+	"diagnostic-languageserver.formatters": {
+		"shfmt": {
+			"command": "shfmt",
+			"args": ["-i", "2", "-bn", "-ci", "-sr"]
+		}
+	}
 }

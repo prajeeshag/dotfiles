@@ -49,6 +49,7 @@ set hlsearch
 set ruler
 
 syntax on
+filetype plugin on
 filetype plugin indent on
 
 " Show the (partial) command as it’s being typed
@@ -119,5 +120,5 @@ nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
 let g:coc_global_extensions = [
       \'coc-markdownlint', 'coc-python', 'coc-explorer',
       \'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
-      \'coc-diagnostic', 'coc-marketplace', 'coc-sh'
+      \'coc-marketplace', 'coc-sh', 'coc-diagnostic'
       \]
