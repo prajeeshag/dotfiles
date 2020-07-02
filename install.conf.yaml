@@ -7,7 +7,7 @@
     ~/.zshrc:
         if: '[ `hostname` = "Prajeeshs-MacBook-Air.local" ]'
     ~/.bashrc:
-        if: '[ `hostname` = Linux ]'
+        if: '[ `uname` = Linux ]'
     ~/.functions:
     ~/.aliases:
     ~/.exports:

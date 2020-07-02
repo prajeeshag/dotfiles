@@ -33,4 +33,3 @@ type conda &> /dev/null || (echo "Install miniconda and rerun the script"; exit 
 #fortls
 type fortls &> /dev/null || pip install fortran-language-server
 
-
