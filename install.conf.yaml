@@ -5,10 +5,8 @@
     ~/.vimrc:
     ~/.vim:  
     ~/.zshrc:
-        if: '[ `hostname` = "Prajeeshs-MacBook-Air.local" ]'
     ~/.bashrc:
-        if: '[ `uname` = Linux ]'
-        path: zshrc
+        path: bashrc
     ~/.functions:
     ~/.aliases:
     ~/.exports:
