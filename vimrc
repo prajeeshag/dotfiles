@@ -113,9 +113,10 @@ nnoremap <c-l> <c-w>l
 
 nmap <silent> <leader>j <plug>(coc-diagnostic-next)
 nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
-"nmap <silent> <leader>j <plug>(ale_next_wrap)
-"nmap <silent> <leader>k <plug>(ale_previous_wrap)
-"
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 "# List of Coc extensions to be auto installed
 let g:coc_global_extensions = [
       \'coc-markdownlint', 'coc-python', 'coc-explorer',

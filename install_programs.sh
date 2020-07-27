@@ -29,5 +29,5 @@ type conda &> /dev/null || (echo "Install miniconda and rerun the script"; exit 
 #fortls
 type fortls &> /dev/null || pip install fortran-language-server
 
-
+pip3 install jedi-language-server pep8 pylint
 
