@@ -9,6 +9,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 
@@ -63,7 +64,7 @@ endif
 set scrolloff=3
 
 "set background=dark
-colorscheme solarized
+"colorscheme solarized
 set t_co=256
 call togglebg#map("<f5>")
 
@@ -121,5 +122,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 let g:coc_global_extensions = [
       \'coc-markdownlint', 'coc-python', 'coc-explorer',
       \'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
-      \'coc-marketplace', 'coc-sh', 'coc-diagnostic'
+      \'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
+			\'coc-css'
       \]

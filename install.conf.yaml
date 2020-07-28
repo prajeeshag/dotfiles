@@ -5,6 +5,7 @@
     ~/.vimrc:
     ~/.vim:  
     ~/.zshrc:
+    ~/.pylintrc:
     ~/.functions:
     ~/.aliases:
     ~/.exports:
