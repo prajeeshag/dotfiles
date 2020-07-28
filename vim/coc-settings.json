@@ -1,6 +1,10 @@
 {
 	"suggest.noselect": false,
 
+	"python.jediEnabled": false,
+
+	"coc.preferences.formatOnSaveFiletypes": ["python"],
+
 	"languageserver": {
 		"fortran": {
 			"command": "fortls",

@@ -8,10 +8,12 @@ Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -64,9 +66,9 @@ endif
 set scrolloff=3
 
 "set background=dark
-"colorscheme solarized
+colorscheme badwolf
 set t_co=256
-call togglebg#map("<f5>")
+"call togglebg#map("<f5>")
 
 
 set shortmess+=i
@@ -88,6 +90,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
 
 let use_findent = 0 
@@ -125,3 +129,8 @@ let g:coc_global_extensions = [
       \'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
 			\'coc-css'
       \]
+
+let g:badwolf_darkgutter = 1
+let g:badwolf_css_props_highlight = 1
+
+set tags=tags
