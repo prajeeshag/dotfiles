@@ -7,19 +7,25 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mihaifm/bufstop'
 
 call plug#end()
 
 set ts=2
 set sts=2
 set sw=2
+
+set list lcs=tab:\|\ 
 
 set hidden
 set nobackup
@@ -124,13 +130,26 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 "# List of Coc extensions to be auto installed
 let g:coc_global_extensions = [
-      \'coc-markdownlint', 'coc-python', 'coc-explorer',
-      \'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
-      \'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
-			\'coc-css'
-      \]
+			\'coc-markdownlint', 'coc-python', 'coc-explorer',
+			\'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
+			\'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
+			\'coc-css', 'coc-tsserver'
+			\]
 
 let g:badwolf_darkgutter = 1
 let g:badwolf_css_props_highlight = 1
 
 set tags=tags
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+map <leader>b :Bufstop<CR>             " get a visual on the buffers
+map <leader>a :BufstopModeFast<CR>     " a command for quick switching
+map <C-tab>   :BufstopBack<CR>
+map <S-tab>   :BufstopForward<CR>
+let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
