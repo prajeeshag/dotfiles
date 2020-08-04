@@ -18,6 +18,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mihaifm/bufstop'
+Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
