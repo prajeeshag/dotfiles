@@ -7,16 +7,26 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'itchyny/lightline.vim'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mihaifm/bufstop'
+Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
 set ts=2
 set sts=2
 set sw=2
+
+set list lcs=tab:\|\ 
 
 set hidden
 set nobackup
@@ -63,9 +73,9 @@ endif
 set scrolloff=3
 
 "set background=dark
-colorscheme solarized
+colorscheme badwolf
 set t_co=256
-call togglebg#map("<f5>")
+"call togglebg#map("<f5>")
 
 
 set shortmess+=i
@@ -87,6 +97,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
 
 let use_findent = 0 
@@ -113,12 +125,32 @@ nnoremap <c-l> <c-w>l
 
 nmap <silent> <leader>j <plug>(coc-diagnostic-next)
 nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
-"nmap <silent> <leader>j <plug>(ale_next_wrap)
-"nmap <silent> <leader>k <plug>(ale_previous_wrap)
-"
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 "# List of Coc extensions to be auto installed
 let g:coc_global_extensions = [
-      \'coc-markdownlint', 'coc-python', 'coc-explorer',
-      \'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
-      \'coc-marketplace', 'coc-sh', 'coc-diagnostic'
-      \]
+			\'coc-markdownlint', 'coc-python', 'coc-explorer',
+			\'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
+			\'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
+			\'coc-css', 'coc-tsserver'
+			\]
+
+let g:badwolf_darkgutter = 1
+let g:badwolf_css_props_highlight = 1
+
+set tags=tags
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+map <leader>b :Bufstop<CR>             " get a visual on the buffers
+map <leader>a :BufstopModeFast<CR>     " a command for quick switching
+map <C-tab>   :BufstopBack<CR>
+map <S-tab>   :BufstopForward<CR>
+let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers

@@ -5,8 +5,7 @@
     ~/.vimrc:
     ~/.vim:  
     ~/.zshrc:
-    ~/.bashrc:
-        path: bashrc
+    ~/.pylintrc:
     ~/.functions:
     ~/.aliases:
     ~/.exports:
