@@ -8,3 +8,7 @@ done;
 unset file;
 
 set -o vi
+
+if [[ -z $TMUX ]] && [[ -n $SSH_TTY ]]; then
+    exec tmux new-session -A -s SSH
+fi
