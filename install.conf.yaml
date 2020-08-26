@@ -3,6 +3,7 @@
         
 - link:
     ~/.vimrc:
+    ~/.tmux.conf:
     ~/.vim:  
     ~/.pylintrc:
     ~/.functions:
