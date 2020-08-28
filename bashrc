@@ -9,6 +9,9 @@ unset file;
 
 set -o vi
 
+export TERM=xterm-256color
+
 if [[ -z $TMUX ]] && [[ -n $SSH_TTY ]]; then
     exec tmux new-session -A -s SSH
 fi
+

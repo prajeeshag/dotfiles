@@ -16,12 +16,15 @@ Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'mihaifm/bufstop'
 Plug 'tpope/vim-eunuch'
 Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
+
+colorscheme badwolf
+set t_co=256
+
 
 set ts=2
 set sts=2
@@ -49,10 +52,6 @@ endif
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
-" Show “invisible” characters
-"set lcs=tab:▸\
-"set list
-
 " Highlight searches
 set hlsearch
 
@@ -72,11 +71,6 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
-
-"set background=dark
-colorscheme badwolf
-set t_co=256
-"call togglebg#map("<f5>")
 
 
 set shortmess+=i
@@ -146,8 +140,8 @@ set tags=tags
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
+	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+				\| exe "normal! g'\"" | endif
 endif
 
 map <leader>b :Bufstop<CR>             " get a visual on the buffers
