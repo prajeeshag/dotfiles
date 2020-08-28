@@ -5,6 +5,8 @@
 
 	"coc.preferences.formatOnSaveFiletypes": ["python"],
 
+	"html.autoClosingTags": true,
+
 	"languageserver": {
 		"fortran": {
 			"command": "fortls",
