@@ -40,4 +40,4 @@ sed -i.bak '/tmux_install_path/d' "$HOME/.bashrc"
 echo "$strng" >> "$HOME/.bashrc"
 echo "appended to bashrc"
 
-
+rm -rf "$builddir"
