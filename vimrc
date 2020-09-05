@@ -13,7 +13,7 @@ Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 "Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'mihaifm/bufstop'
@@ -88,7 +88,6 @@ set noerrorbells visualbell t_vb=
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -144,10 +143,6 @@ if has("autocmd")
 				\| exe "normal! g'\"" | endif
 endif
 
-map <leader>b :Bufstop<CR>             " get a visual on the buffers
-map <leader>a :BufstopModeFast<CR>     " a command for quick switching
-map <C-tab>   :BufstopBack<CR>
-map <S-tab>   :BufstopForward<CR>
 let g:BufstopAutoSpeedToggle = 1  
 
 nmap <space>e :CocCommand explorer<CR>
@@ -160,3 +155,6 @@ if exists('+termguicolors')
 endif
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+nnoremap <silent> <c-p> :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
