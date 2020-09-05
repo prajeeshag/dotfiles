@@ -14,30 +14,32 @@ mkdir -p "$installdir"
 mkdir -p "$builddir"
 
 cd "$builddir"
-wget -c -N https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION/libevent-$LIBEVENT_VERSION.tar.gz
-tar -xzf ---skip-old-files libevent-$LIBEVENT_VERSION.tar.gz
+wget -c https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION/libevent-$LIBEVENT_VERSION.tar.gz
+tar -xzf libevent-$LIBEVENT_VERSION.tar.gz
+
 cd libevent-$LIBEVENT_VERSION
 ./configure --prefix="$installdir"
 make install
 
 cd "$builddir"
-wget -c -N https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz
-tar -xzf --skip-old-files ncurses-$NCURSES_VERSION.tar.gz
+wget -c https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz
+tar -xzf ncurses-$NCURSES_VERSION.tar.gz
 cd ncurses-$NCURSES_VERSION
 ./configure CPPFLAGS="-P" --prefix="$installdir"
 make install
 
 cd "$builddir"
-wget -c -N https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz
-tar -xzf --skip-old-files tmux-$TMUX_VERSION.tar.gz
+wget -N https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz
+tar -xzf tmux-$TMUX_VERSION.tar.gz
+
 cd tmux-$TMUX_VERSION
 #CFLAGS="-I"$installdir"/include" LDFLAGS="-static -L"$installdir"/lib" ./configure --prefix="$installdir"
 CFLAGS="-I$installdir/include" LDFLAGS="-L$installdir/lib" ./configure --prefix="$installdir"
 make install
 
-strng="export PATH=$installdir/bin:\$PATH  # tmux_install_path" >> "$HOME/.bashrc"
-sed -i.bak '/tmux_install_path/d' "$HOME/.bashrc"
-echo "$strng" >> "$HOME/.bashrc"
+strng="export LD_LIBRARY_PATH=$installdir/lib:\$LD_LIBRARY_PATH; export PATH=$installdir/bin:\$PATH  # tmux_install_path"
+sed -i.bak '/tmux_install_path/d' "~/.bashrc"
+echo "$strng" >> "~/.bashrc"
 echo "appended to bashrc"
 
 rm -rf "$builddir"
