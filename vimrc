@@ -150,9 +150,13 @@ map <C-tab>   :BufstopBack<CR>
 map <S-tab>   :BufstopForward<CR>
 let g:BufstopAutoSpeedToggle = 1  
 
+nmap <space>e :CocCommand explorer<CR>
+
 
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'

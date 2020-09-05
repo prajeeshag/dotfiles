@@ -14,21 +14,21 @@ mkdir -p "$installdir"
 mkdir -p "$builddir"
 
 cd "$builddir"
-wget -N https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION/libevent-$LIBEVENT_VERSION.tar.gz
+wget -c -N https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION/libevent-$LIBEVENT_VERSION.tar.gz
 tar -xzf ---skip-old-files libevent-$LIBEVENT_VERSION.tar.gz
 cd libevent-$LIBEVENT_VERSION
 ./configure --prefix="$installdir"
 make install
 
 cd "$builddir"
-wget -N https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz
+wget -c -N https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz
 tar -xzf --skip-old-files ncurses-$NCURSES_VERSION.tar.gz
 cd ncurses-$NCURSES_VERSION
 ./configure CPPFLAGS="-P" --prefix="$installdir"
 make install
 
 cd "$builddir"
-wget -N https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz
+wget -c -N https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz
 tar -xzf --skip-old-files tmux-$TMUX_VERSION.tar.gz
 cd tmux-$TMUX_VERSION
 #CFLAGS="-I"$installdir"/include" LDFLAGS="-static -L"$installdir"/lib" ./configure --prefix="$installdir"
