@@ -2,7 +2,7 @@
 call plug#begin('~/.vim_plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
@@ -159,4 +159,3 @@ endif
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 let g:fzf_preview_window = ''
-
