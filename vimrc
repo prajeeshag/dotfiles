@@ -8,7 +8,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'itchyny/lightline.vim'
-"Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -154,7 +154,9 @@ if exists('+termguicolors')
 	set termguicolors
 endif
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
+"fzf settings
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+let g:fzf_preview_window = ''
+
