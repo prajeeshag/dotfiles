@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.

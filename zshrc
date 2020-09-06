@@ -7,5 +7,4 @@ for file in ~/.{extras,exports,aliases,functions}; do
 done;
 unset file;
 
-plugins=(git vi-mode)
 
