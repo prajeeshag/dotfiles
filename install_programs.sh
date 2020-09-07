@@ -24,10 +24,10 @@
 #
 #fi
 
-type conda &> /dev/null || (echo "Install miniconda and rerun the script"; exit 1) || exit 1
+type conda &> /dev/null || (echo "Install miniconda...." ) 
 
 #fortls
-type fortls &> /dev/null || pip install fortran-language-server
+type fortls &> /dev/null || pip3 install fortran-language-server
 
 pip3 install jedi-language-server pep8 pylint pylint-django
 
