@@ -2,18 +2,18 @@
 call plug#begin('~/.vim_plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'itchyny/lightline.vim'
-"Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 "Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'mihaifm/bufstop'
@@ -88,7 +88,6 @@ set noerrorbells visualbell t_vb=
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -144,11 +143,9 @@ if has("autocmd")
 				\| exe "normal! g'\"" | endif
 endif
 
-map <leader>b :Bufstop<CR>             " get a visual on the buffers
-map <leader>a :BufstopModeFast<CR>     " a command for quick switching
-map <C-tab>   :BufstopBack<CR>
-map <S-tab>   :BufstopForward<CR>
 let g:BufstopAutoSpeedToggle = 1  
+
+nmap <space>e :CocCommand explorer<CR>
 
 
 if exists('+termguicolors')
@@ -156,3 +153,9 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
+
+
+"fzf settings
+nnoremap <silent> <c-p> :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+let g:fzf_preview_window = ''

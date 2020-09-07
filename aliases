@@ -4,19 +4,6 @@ alias pratyush="ssh -Y prajeesh@10.12.1.11"
 alias aditya="ssh -Y prajeesh@10.4.9.103"
 alias ofcdesktop="ssh -Y prajeesh@10.5.2.3"
 
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-# Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
-alias g="git"
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
