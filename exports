@@ -27,3 +27,5 @@ fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PIPENV_VENV_IN_PROJECT=1
+
+export XTERM=xterm-256color
