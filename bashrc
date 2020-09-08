@@ -11,7 +11,6 @@ unset file;
 set -o vi
 
 if [[ -z $TMUX ]] ; then
-	echo tmux
   tmux new-session -A -s SSH
 fi
 
