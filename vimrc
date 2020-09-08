@@ -1,28 +1,27 @@
 
-call plug#begin('~/.vim_plugged')
+if v:version >= 800
+  call plug#begin('~/.vim_plugged')
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'junegunn/fzf', { 'do': 'bash install' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'preservim/nerdcommenter'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'sjl/badwolf'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-surround'
+  "Plug 'Yggdroot/indentLine'
+  Plug 'vim-airline/vim-airline'
+  Plug 'mihaifm/bufstop'
+  Plug 'tpope/vim-eunuch'
+  Plug 'jiangmiao/auto-pairs'
+  call plug#end()
+endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': 'bash install' }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'altercation/vim-colors-solarized'
-Plug 'sjl/badwolf'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-surround'
-"Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'
-Plug 'mihaifm/bufstop'
-Plug 'tpope/vim-eunuch'
-Plug 'jiangmiao/auto-pairs'
-call plug#end()
-
-set t_co=256
 syntax on
+set t_co=256
 set background=dark
-colorscheme solarized
-
 
 set ts=2
 set sts=2
@@ -131,6 +130,8 @@ if exists('+termguicolors')
 endif
 "--------------------------------------
 
+if v:version >= 800
+	colorscheme solarized
 
 "fzf settings start
 	nnoremap <silent> <c-p> :Files<CR>
@@ -167,5 +168,4 @@ endif
 	let g:indent_guides_enable_on_vim_startup = 1
 
 " indentLine settings end
-
-
+endif
