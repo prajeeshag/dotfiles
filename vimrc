@@ -7,8 +7,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'altercation/vim-colors-solarized'
-Plug 'sjl/badwolf'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 "Plug 'Yggdroot/indentLine'
@@ -16,12 +14,19 @@ Plug 'vim-airline/vim-airline'
 Plug 'mihaifm/bufstop'
 Plug 'tpope/vim-eunuch'
 Plug 'jiangmiao/auto-pairs'
+"Plug 'tmhedberg/SimpylFold'
+"colorschemes 
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'sjl/badwolf'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 set t_co=256
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 
 set ts=2
@@ -168,4 +173,4 @@ endif
 
 " indentLine settings end
 
-
+let g:python_highlight_all = 1
