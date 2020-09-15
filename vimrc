@@ -29,6 +29,9 @@ set t_co=256
 set background=dark
 colorscheme gruvbox
 
+set splitbelow
+set splitright
+
 set ts=2
 set sts=2
 set sw=2
