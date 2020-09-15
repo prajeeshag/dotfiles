@@ -318,8 +318,8 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
-$argadd vim/sessions/default.vim
-edit vim/sessions/default.vim
+$argadd vimrc
+edit vimrc
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -521,14 +521,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 223 - ((18 * winheight(0) + 11) / 22)
+let s:l = 73 - ((21 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-223
+73
 normal! 0
 tabnext 1
-badd +0 vim/sessions/default.vim
+badd +0 vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -540,7 +540,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

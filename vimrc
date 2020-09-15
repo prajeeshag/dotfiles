@@ -151,6 +151,7 @@ if v:version >= 800
 	nmap <silent> <leader>k <plug>(coc-diagnostic-prev)
 	xmap <silent> <leader>f <Plug>(coc-format-selected)
 	nmap <silent> <leader>f <Plug>(coc-format-selected)
+
 	let g:coc_global_extensions = [
 				\'coc-markdownlint', 'coc-python', 'coc-explorer',
 				\'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
