@@ -28,6 +28,8 @@ syntax on
 set background=dark
 colorscheme gruvbox
 
+set splitbelow
+set splitright
 
 set ts=2
 set sts=2
