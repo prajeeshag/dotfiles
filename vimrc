@@ -137,7 +137,6 @@ endif
 "--------------------------------------
 
 if v:version >= 800
-	colorscheme solarized
 
 "fzf settings start
 	nnoremap <silent> <c-p> :Files<CR>
