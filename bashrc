@@ -10,7 +10,4 @@ unset file;
 
 set -o vi
 
-if [[ -z $TMUX ]] ; then
-  exec tmux new-session -A -s Tmux
-fi
 

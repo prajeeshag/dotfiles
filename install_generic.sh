@@ -50,12 +50,13 @@ fi
 
 
 #ZSH
-if ! command -v zsh &> /dev/null; then
+#if ! command -v zsh &> /dev/null; then
+if [ -z $(ls "$installdir/bin/zsh" 2> /dev/null) ]; then
 	echo "Installing zsh........."
 	cd "$builddir"
 	wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
 	tar xf zsh.tar.xz
-	cd zsh
+	cd zsh-*
 	./configure --prefix="$installdir" \
 		    CPPFLAGS="-I$installdir/include" \
 				    LDFLAGS="-L$installdir/lib"
@@ -65,7 +66,6 @@ else
 	command -v zsh
 fi
 
-
 strng="export LD_LIBRARY_PATH=$installdir/lib:\$LD_LIBRARY_PATH; export PATH=$installdir/bin:\$PATH  # tmux_install_path"
 sed -i.bak '/tmux_install_path/d' "$HOME/.bashrc"
 echo "$strng" >> "$HOME/.bashrc"
@@ -73,3 +73,9 @@ echo "appended to bashrc"
 
 rm -rf "$builddir"
 
+#FZF
+if ! command -v fzf &> /dev/null; then
+	echo "Installing FzF...."	
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+	$HOME/.fzf/install
+fi
