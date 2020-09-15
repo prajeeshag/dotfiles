@@ -1,27 +1,33 @@
 
 if v:version >= 800
-  call plug#begin('~/.vim_plugged')
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'junegunn/fzf', { 'do': 'bash install' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'sjl/badwolf'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'tpope/vim-surround'
-  "Plug 'Yggdroot/indentLine'
-  Plug 'vim-airline/vim-airline'
-  Plug 'mihaifm/bufstop'
-  Plug 'tpope/vim-eunuch'
-  Plug 'jiangmiao/auto-pairs'
-  call plug#end()
+	call plug#begin('~/.vim_plugged')
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'junegunn/fzf', { 'do': 'bash install' }
+	Plug 'junegunn/fzf.vim'
+	Plug 'preservim/nerdcommenter'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'tpope/vim-surround'
+	"Plug 'Yggdroot/indentLine'
+	Plug 'vim-airline/vim-airline'
+	Plug 'mihaifm/bufstop'
+	Plug 'tpope/vim-eunuch'
+	Plug 'jiangmiao/auto-pairs'
+	"Plug 'tmhedberg/SimpylFold'
+	"colorschemes 
+	Plug 'altercation/vim-colors-solarized'
+	Plug 'morhetz/gruvbox'
+	Plug 'jnurmine/Zenburn'
+	Plug 'sjl/badwolf'
+	Plug 'NLKNguyen/papercolor-theme'
+	call plug#end()
 endif
 
 syntax on
 set t_co=256
 set background=dark
+colorscheme gruvbox
 
 set ts=2
 set sts=2
@@ -169,3 +175,4 @@ if v:version >= 800
 
 " indentLine settings end
 endif
+let g:python_highlight_all = 1
