@@ -7,7 +7,4 @@ for file in ~/.{extras,exports,aliases,functions}; do
 done;
 unset file;
 
-if [ -z "$TMUX" ]; then
-	exec tmux new-session -A -s main
-fi
 
