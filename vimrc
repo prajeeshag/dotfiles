@@ -1,7 +1,11 @@
 
 if v:version >= 800
 	call plug#begin('~/.vim_plugged')
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	if $HOSTNAME !~ "iitmlogin"
+		Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	"else
+		"Plug 'davidhalter/jedi-vim'
+	endif
 	Plug 'junegunn/fzf', { 'do': 'bash install' }
 	Plug 'junegunn/fzf.vim'
 	Plug 'preservim/nerdcommenter'
