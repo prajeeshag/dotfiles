@@ -6,7 +6,7 @@
 
 	"suggest.noselect": false,
 
-	"python.jediEnabled": true,
+	"python.jediEnabled": false,
 
 	"coc.preferences.formatOnSaveFiletypes": ["python"],
 
