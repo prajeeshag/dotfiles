@@ -25,6 +25,7 @@ if v:version >= 800
 	Plug 'jnurmine/Zenburn'
 	Plug 'sjl/badwolf'
 	Plug 'NLKNguyen/papercolor-theme'
+	Plug 'adelarsq/vim-matchit'
 	call plug#end()
 endif
 
@@ -163,7 +164,7 @@ if v:version >= 800
 				\'coc-markdownlint', 'coc-python', 'coc-explorer',
 				\'coc-json', 'coc-texlab', 'coc-yaml', 'coc-clangd',
 				\'coc-marketplace', 'coc-sh', 'coc-diagnostic', 'coc-html',
-				\'coc-css', 'coc-tsserver'
+				\'coc-css', 'coc-tsserver', 'coc-vimtex'
 				\]
 "coc settings end
 
@@ -182,4 +183,5 @@ if v:version >= 800
 
 " indentLine settings end
 endif
+
 let g:python_highlight_all = 1
