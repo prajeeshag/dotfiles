@@ -80,3 +80,6 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+alias pyvenv='python -m venv .venv --prompt $(basename $(pwd))'
+alias actvenv='source .venv/bin/activate'
