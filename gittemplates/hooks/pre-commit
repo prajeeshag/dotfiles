@@ -10,7 +10,24 @@
 # make sure requirements.txt is up to date with every commit
 # by comparing the output of pip freeze
 
-if [ -r requirements.txt ]; then
+if [ -r pyproject.toml ]; then
+
+	echo "Running poetry -> requirements.txt"
+	poetry export -f requirements.txt -o requirements_new.txt --without-hashes
+	if [ -r requirements.txt ]; then
+		diff requirements.txt requirements_new.txt > /dev/null
+		if [$? != 0 ]; then
+			mv requirements_new.txt requirements.txt
+			git add requirements.txt
+		else
+			rm requirements_new.txt
+		fi
+	else
+		mv requirements_new.txt requirements.txt
+		git add requirements.txt
+	fi
+
+elif [ -r requirements.txt ]; then
 	pip freeze | diff requirements.txt - > /dev/null
 	if [ $? != 0 ]; then
 	    echo "Missing python module dependencies in requirements.txt. Run 'pip freeze > requirements.txt' to update."
@@ -19,6 +36,4 @@ if [ -r requirements.txt ]; then
 		echo "requirements.txt upto date"
 	fi
 fi
-
-
 
