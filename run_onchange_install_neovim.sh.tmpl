@@ -1,6 +1,7 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/zsh
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-{{- .chezmoi.arch -}}.tar.gz
-tar -xzf nvim-macos-{{- .chezmoi.arch -}}.tar.gz
+mkdir -p .local
+tar -C ~/.local -xzf nvim-macos-{{- .chezmoi.arch -}}.tar.gz && rm nvim-macos-{{- .chezmoi.arch -}}.tar.gz
 {{ end -}}
 	
