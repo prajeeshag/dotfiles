@@ -13,4 +13,10 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/Tools/flutter/bin:$PATH"
 export PATH="$HOME/.local/nvim-macos-arm64/bin:$PATH"
 
+if command -v nvim > /dev/null 2>&1; then
+	alias vim="nvim"
+	alias vi="nvim"
+fi
+
+
 
