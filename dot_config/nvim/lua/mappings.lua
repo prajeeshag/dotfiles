@@ -8,3 +8,6 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+local nomap = vim.keymap.del
+nomap("n", "<leader>h")
