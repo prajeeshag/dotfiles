@@ -1,7 +1,14 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/zsh
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-{{- .chezmoi.arch -}}.tar.gz
-mkdir -p .local
-tar -C ~/.local -xzf nvim-macos-{{- .chezmoi.arch -}}.tar.gz && rm nvim-macos-{{- .chezmoi.arch -}}.tar.gz
-{{ end -}}
-	
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-{{- .chezmoi.arch -}}.tar.gz
+  mkdir -p ~/.local
+  tar -C ~/.local -xzf nvim-macos-{{- .chezmoi.arch -}}.tar.gz && rm nvim-macos-{{- .chezmoi.arch -}}.tar.gz
+  LINE='export PATH="$HOME/.local/nvim-macos-{{- .chezmoi.arch -}}/bin:$PATH"'
+  grep -Lq "$LINE" && echo $LINE >> ~/.zshrc
+{{ else }}
+#!/bin/bash
+  echo "Neovim installation not implemeted for {{- .chezmoi.os -}}"
+  exit 1
+
+{{ end -}} 
+
