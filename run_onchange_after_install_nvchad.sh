@@ -1,4 +1,6 @@
 #!/bin/bash
-if command -v nvim > /dev/null 2>&1; then
-nvim --headless +MasonInstallAll +qall
+if command -v nvim &> /dev/null; then
+  nvim --headless +MasonInstallAll +qall
+else
+  echo "Not installing nvchad: nvim not available!!"
 fi
