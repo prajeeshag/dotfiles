@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LINE='[ -e ~/.shellrc ] && source ~/.shellrc'
+[ -e ~/.zshrc ] && (grep -qxF $LINE ~/.zshrc || echo $LINE >> ~/.zshrc)
+[ -e ~/.bashrc ] && (grep -qxF $LINE ~/.bashrc || echo $LINE >> ~/.bashrc)
+
