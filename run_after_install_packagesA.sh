@@ -108,6 +108,7 @@ install_shfmt(){
 __run_install(){
   # List all functions starting with install_
   install_functions=$(declare -F | awk '{print $3}' | grep '^install_')
+  source_nvmsh
   for fn in $install_functions; do
     pkg="$(echo $fn | sed 's/^install_//')"
     cmd=${pkg//_/-}
