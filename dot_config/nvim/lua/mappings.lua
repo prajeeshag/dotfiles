@@ -11,3 +11,8 @@ map("i", "jk", "<ESC>")
 
 local nomap = vim.keymap.del
 nomap("n", "<leader>h")
+nomap({"n", "t"}, "<A-h>")
+
+map({ "n", "t" }, "<A-t>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal new horizontal term" })
