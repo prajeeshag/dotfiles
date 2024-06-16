@@ -1,18 +1,20 @@
-#!/bin/bash 
+#!/bin/bash
+
+
 set -e
 
 add_line() {
     local line="$1"
     local file="$2"
-    grep -Fq "$line" $2 || echo "$line" >> $file
+		if [ -e "$file"  ]; then
+			grep -Fq "$line" "$file" || echo "$line" >> "$file"
+		fi
 }
 
 add_to_shellrc() {
-  LINE=$1
-  for rc in .zshrc .bashrc; do
-    if [ -e ~/$rc ]; then
-      add_line "$LINE" ~/$rc
-    fi
+  LINE="$1"
+  for rc in ~/.zshrc ~/.bashrc; do
+    add_line "$LINE" "$rc"
   done
 }
 
@@ -23,8 +25,6 @@ set_ohmyzsh_plugin() {
     zsh -c ". $rc_file; echo \$plugins" | grep -qF "$plugin" || \
         sed -i -e "s|source \$ZSH/oh-my-zsh.sh|$line\n&|" $rc_file
 }
-
-
 
 nvim_pkg_name(){
   os=$(uname -s)
@@ -53,33 +53,36 @@ install_nvim(){
     # Install nvim
     PKG_NAME=$(nvim_pkg_name)
     TAR_FILE=${PKG_NAME}.tar.gz
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/${TAR_FILE}
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/"${TAR_FILE}"
     echo "$0: Neovim downloaded.."
     mkdir -p ~/.local
     rm -rf ~/.local/nvim
-    tar -xzf ${TAR_FILE}
-    mv ${PKG_NAME} ~/.local/nvim 
+    tar -xzf "${TAR_FILE}"
+    mv "${PKG_NAME}" ~/.local/nvim 
     echo "$0: Neovim extrated.."
-    LINE='export PATH=~/.local/nvim/bin:$PATH'
-    add_to_shellrc $LINE    
+    LINE='export PATH=~/.local/nvim/bin:$PATH' #ignore
+    add_to_shellrc "$LINE"   
     echo "Neovim installation done.."
 }
 
 install_nvm(){
     url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
     LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$LATEST_RELEASE/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/"$LATEST_RELEASE"/install.sh | bash
 }	
 
 install_micromamba(){
   "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
   line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
-  add_to_shellrc $line
+  add_to_shellrc "$line"
 }
 
 
 source_nvmsh(){
-  [ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh
+	# shellcheck source=/dev/null
+  if [ -s ~/.nvm/nvm.sh ]; then
+		. ~/.nvm/nvm.sh
+	fi
 }
 
 install_npm(){
@@ -93,8 +96,7 @@ install_bash_language_server(){
 }
 
 __install_mambapkg(){
-    micromamba activate base
-    micromamba install $1 -c conda-forge
+    micromamba install "$1" -c conda-forge -n base -y
 }
 
 install_shellcheck(){
@@ -105,12 +107,19 @@ install_shfmt(){
     curl -sS https://webi.sh/shfmt | sh
 }
 
+install_fzf(){
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+	add_line 'eval "$(fzf --bash)"' ~/.bashrc
+	add_line 'source <(fzf --zsh)' ~/.zshrc
+}
+
 __run_install(){
   # List all functions starting with install_
   install_functions=$(declare -F | awk '{print $3}' | grep '^install_')
   source_nvmsh
   for fn in $install_functions; do
-    pkg="$(echo $fn | sed 's/^install_//')"
+    pkg=${fn//install_/}
     cmd=${pkg//_/-}
     if ! command -v "$cmd" &> /dev/null; then
       if ! command -v "$pkg" &> /dev/null; then
@@ -139,6 +148,8 @@ __main(){
   __run_install
   __set_shell_properties
   add_to_shellrc '[ -e ~/.shellrc ] && source ~/.shellrc'
+  line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
+  add_to_shellrc "$line"
 }
 
 __main
