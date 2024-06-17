@@ -20,7 +20,6 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
-				"lua-language-server",
 				"stylua",
 				"bash-language-server",
 				"shellcheck",
@@ -28,8 +27,8 @@ return {
 				"black",
 				"pyright",
 				"ruff",
+				"lua-language-server",
 			},
-			automatic_installation = true,
 		},
 	},
 	--

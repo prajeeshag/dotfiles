@@ -148,9 +148,6 @@ __main() {
 	add_to_shellrc '[ -e ~/.shellrc ] && source ~/.shellrc'
 	line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
 	add_to_shellrc "$line"
-	if command -v nvim &>/dev/null; then
-		nvim --headless +MasonInstallAll +qa
-	fi
 }
 
 __main
