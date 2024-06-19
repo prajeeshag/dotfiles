@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.cylc",
 	callback = function()
 		vim.cmd("setfiletype cylc")
-		vim.cmd("set foldlevelstart=99")
+		vim.cmd("set foldlevel=99")
 	end,
 	group = "CylcSyntax",
 })
