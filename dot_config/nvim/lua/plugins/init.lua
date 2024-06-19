@@ -24,7 +24,6 @@ return {
 				"lua-language-server",
 				"stylua",
 				-- Bash
-				"bash-language-server",
 				"shellcheck",
 				"shfmt",
 				-- Python

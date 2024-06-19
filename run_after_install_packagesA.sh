@@ -91,10 +91,10 @@ install_npm(){
     nvm install --lts
 }
 
-#install_bash_language_server(){
-#    source_nvmsh
-#    npm i -g bash-language-server
-#}
+install_bash_language_server(){
+    source_nvmsh
+    npm i -g bash-language-server
+}
 
 __install_mambapkg() {
 	micromamba install "$1" -c conda-forge -n base -y
