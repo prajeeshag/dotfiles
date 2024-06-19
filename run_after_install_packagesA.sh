@@ -64,10 +64,10 @@ install_nvim() {
 	echo "Neovim installation done.."
 }
 
-install_nvm(){
-    url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
-    LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/"$LATEST_RELEASE"/install.sh | bash
+install_nvm() {
+	url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
+	LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/"$LATEST_RELEASE"/install.sh | bash
 }
 
 install_micromamba() {
@@ -86,14 +86,14 @@ source_nvmsh() {
 	fi
 }
 
-install_npm(){
-    source_nvmsh
-    nvm install --lts
+install_npm() {
+	source_nvmsh
+	nvm install --lts
 }
 
-install_bash_language_server(){
-    source_nvmsh
-    npm i -g bash-language-server
+install_bash_language_server() {
+	source_nvmsh
+	npm i -g bash-language-server
 }
 
 __install_mambapkg() {
@@ -149,7 +149,11 @@ __main() {
 	__run_install
 	__set_shell_properties
 	add_to_shellrc '[ -e ~/.shellrc ] && source ~/.shellrc'
+
 	line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
+	add_to_shellrc "$line"
+
+	line='[ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && tmux new-session -As0'
 	add_to_shellrc "$line"
 }
 
