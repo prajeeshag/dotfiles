@@ -20,14 +20,20 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				-- Lua
+				"lua-language-server",
 				"stylua",
+				-- Bash
 				"bash-language-server",
 				"shellcheck",
 				"shfmt",
+				-- Python
 				"black",
 				"pyright",
 				"ruff",
-				"lua-language-server",
+				-- Fortran
+				"fortls",
+				"fprettify",
 			},
 		},
 	},
