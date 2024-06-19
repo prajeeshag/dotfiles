@@ -29,8 +29,8 @@ return {
 				"shfmt",
 				-- Python
 				"black",
-				"pyright",
 				"ruff",
+				"ruff-lsp",
 				-- Fortran
 				"fortls",
 				"fprettify",
