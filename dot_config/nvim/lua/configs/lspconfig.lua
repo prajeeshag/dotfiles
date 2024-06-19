@@ -21,3 +21,15 @@ end
 -- 	on_init = on_init,
 -- 	capabilities = capabilities,
 -- })
+require("lspconfig").lua_ls.setup({
+	on_init = on_init,
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})

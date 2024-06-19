@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 vim.g.mapleader = " "
 -- bootstrap lazy and all plugins
@@ -47,6 +49,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.cylc",
 	callback = function()
 		vim.cmd("setfiletype cylc")
+		vim.cmd("set foldlevelstart=99")
 	end,
 	group = "CylcSyntax",
 })
