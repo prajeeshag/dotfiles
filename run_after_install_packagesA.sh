@@ -98,6 +98,8 @@ install_nvim() {
 
 install_nvm() {
 	pkg=nvm
+	source_nvmsh
+	command -v "$pkg" &>/dev/null && return || echo ""
 	command_exists "$pkg" && return || echo "Installing $pkg ..."
 	url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
 	LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')

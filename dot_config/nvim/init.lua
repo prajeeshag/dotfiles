@@ -53,3 +53,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 	group = "CylcSyntax",
 })
+
+vim.api.nvim_exec(
+	[[
+    autocmd FileType cylc setlocal shiftwidth=4
+    autocmd FileType cylc setlocal tabstop=4
+    autocmd FileType cylc setlocal expandtab
+  ]],
+	true
+)
