@@ -24,13 +24,12 @@ return {
 				"lua-language-server",
 				"stylua",
 				-- Bash
-				"bash-language-server",
 				"shellcheck",
 				"shfmt",
 				-- Python
 				"black",
-				"pyright",
 				"ruff",
+				"ruff-lsp",
 				-- Fortran
 				"fortls",
 				"fprettify",

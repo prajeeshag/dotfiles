@@ -129,12 +129,12 @@ install_npm() {
 	nvm install --lts
 }
 
-#install_bash_language_server() {
-#	pkg="bash-language-server"
-#	command_exists "$pkg" && return || echo "Installing $pkg ..."
-#	source_nvmsh
-#	npm i -g bash-language-server
-#}
+install_bash_language_server() {
+	pkg="bash-language-server"
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	source_nvmsh
+	npm i -g bash-language-server
+}
 
 __install_mambapkg() {
 	micromamba install "$1" -c conda-forge -n base -y
@@ -188,7 +188,11 @@ __main() {
 	__run_install
 	__set_shell_properties
 	add_to_shellrc '[ -e ~/.shellrc ] && source ~/.shellrc'
+
 	line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
+	add_to_shellrc "$line"
+
+	line='[ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && tmux new-session -As0'
 	add_to_shellrc "$line"
 }
 

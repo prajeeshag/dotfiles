@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 vim.g.mapleader = " "
 -- bootstrap lazy and all plugins
@@ -38,3 +40,16 @@ vim.schedule(function()
 end)
 
 vim.opt.mouse = ""
+
+-- Define a new autocommand group
+vim.api.nvim_create_augroup("CylcSyntax", { clear = true })
+
+-- Create an autocommand to set the filetype for .cylc files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.cylc",
+	callback = function()
+		vim.cmd("setfiletype cylc")
+		vim.cmd("set foldlevel=99")
+	end,
+	group = "CylcSyntax",
+})
