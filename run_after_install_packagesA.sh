@@ -48,7 +48,39 @@ nvim_pkg_name() {
 	echo "$pkg_name"
 }
 
+command_exists() {
+	if [ "$SHELL" == "/bin/zsh" ]; then
+		zsh -c "source ~/.zshrc; command -v $1 &>/dev/null"
+	else
+		bash -c "source ~/.bashrc; command -v $1 &>/dev/null"
+	fi
+}
+
+install_brew() {
+	os=$(uname -s)
+	[ "$os" != "Darwin" ] && return || echo ""
+	pkg=brew
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+install_otp_cli() {
+	os=$(uname -s)
+	[ "$os" != "Darwin" ] && return || echo ""
+	pkg="otp-cli"
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	install_brew
+	brew install coreutils oath-toolkit
+	mkdir -p ~/.local/
+	git clone git@github.com:rfocosi/otp-cli.git ~/.local/otp-cli
+	cd ~/.local/otp-cli && ln -s "$(pwd)/otp-cli" ~/.local/bin/otp-cli
+	LINE='export PATH=~/.local/bin:$PATH' #ignore
+	add_to_shellrc "$LINE"
+}
+
 install_nvim() {
+	pkg=nvim
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
 	# Install nvim
 	PKG_NAME=$(nvim_pkg_name)
 	TAR_FILE=${PKG_NAME}.tar.gz
@@ -64,13 +96,17 @@ install_nvim() {
 	echo "Neovim installation done.."
 }
 
-install_nvm(){
-    url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
-    LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/"$LATEST_RELEASE"/install.sh | bash
+install_nvm() {
+	pkg=nvm
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	url="https://api.github.com/repos/nvm-sh/nvm/releases/latest"
+	LATEST_RELEASE=$(curl -s $url | grep "tag_name" | sed 's/"//g' | sed 's/,//g' | awk '{ print $2 }')
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/"$LATEST_RELEASE"/install.sh | bash
 }
 
 install_micromamba() {
+	pkg=micromamba
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
 	"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
 	line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
 	add_to_shellrc "$line"
@@ -79,21 +115,25 @@ install_micromamba() {
 source_nvmsh() {
 	# shellcheck source=/dev/null
 	if [ -s ~/.nvm/nvm.sh ]; then
-		if ! command -v "nvm" &>/dev/null; then
+		if ! command_exists "nvm"; then
 			source ~/.nvm/nvm.sh
 			add_to_shellrc "source ~/.nvm/nvm.sh"
 		fi
 	fi
 }
 
-install_npm(){
-    source_nvmsh
-    nvm install --lts
+install_npm() {
+	pkg=npm
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	source_nvmsh
+	nvm install --lts
 }
 
-#install_bash_language_server(){
-#    source_nvmsh
-#    npm i -g bash-language-server
+#install_bash_language_server() {
+#	pkg="bash-language-server"
+#	command_exists "$pkg" && return || echo "Installing $pkg ..."
+#	source_nvmsh
+#	npm i -g bash-language-server
 #}
 
 __install_mambapkg() {
@@ -101,14 +141,20 @@ __install_mambapkg() {
 }
 
 #install_shellcheck(){
+# pkg=shellcheck
+# command_exists "$pkg" && return || echo "Installing $pkg ..."
 #    __install_mambapkg shellcheck
 #}
 
 #install_shfmt(){
-#    curl -sS https://webi.sh/shfmt | sh
+# pkg=shfmt
+# command_exists "$pkg" && return || echo "Installing $pkg ..."
+# curl -sS https://webi.sh/shfmt | sh
 #}
 
 install_fzf() {
+	pkg=fzf
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 	add_line 'eval "$(fzf --bash)"' ~/.bashrc
@@ -120,16 +166,9 @@ __run_install() {
 	install_functions=$(declare -F | awk '{print $3}' | grep '^install_')
 	source_nvmsh
 	for fn in $install_functions; do
-		pkg=${fn//install_/}
-		cmd=${pkg//_/-}
-		if ! command -v "$cmd" &>/dev/null; then
-			if ! command -v "$pkg" &>/dev/null; then
-				echo "Installing $pkg ..."
-				set +e
-				$fn
-				set -e
-			fi
-		fi
+		set +e
+		$fn
+		set -e
 	done
 }
 
