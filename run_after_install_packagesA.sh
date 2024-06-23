@@ -163,6 +163,12 @@ install_fzf() {
 	add_line 'source <(fzf --zsh)' ~/.zshrc
 }
 
+install_rg() {
+	pkg=rg
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	curl -sS https://webi.sh/rg | sh
+}
+
 __run_install() {
 	# List all functions starting with install_
 	install_functions=$(declare -F | awk '{print $3}' | grep '^install_')
