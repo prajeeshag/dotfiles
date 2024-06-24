@@ -3,6 +3,7 @@ local options = {
 		lua = { "stylua" },
 		bash = { "shfmt" },
 		sh = { "shfmt" },
+		python = { "black" },
 		["_"] = { "trim_whitespace" },
 		-- css = { "prettier" },
 		-- html = { "prettier" },
