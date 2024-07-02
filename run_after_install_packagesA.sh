@@ -25,6 +25,23 @@ set_ohmyzsh_plugin() {
 		sed -i -e "s|source \$ZSH/oh-my-zsh.sh|$line\n&|" $rc_file
 }
 
+version_gte() {
+	version1=$1
+	version2=$2
+
+	if [ "$version1" = "$version2" ]; then
+		return 0 # versions are equal
+	elif [ "$(printf '%s\n' "$version1" "$version2" | sort -V | head -n 1)" = "$version1" ]; then
+		return 1 # version1 is less than version2
+	else
+		return 0 # version1 is greater than version2
+	fi
+}
+
+get_libc_version() {
+	ldd --version | head -n1 | awk '{print $NF}'
+}
+
 nvim_pkg_name() {
 	os=$(uname -s)
 	arch=$(uname -m)
@@ -78,14 +95,35 @@ install_otp_cli() {
 	add_to_shellrc "$LINE"
 }
 
+get_nvim_version() {
+	os=$(uname -s)
+	if [ "$os" == "Darwin" ]; then
+		echo "latest"
+		return 0
+	fi
+
+	if version_gte "$(get_libc_version)" "2.31"; then
+		echo "latest"
+	else
+		echo "v0.9.5"
+	fi
+}
+
 install_nvim() {
+	set -e
 	pkg=nvim
 	command_exists "$pkg" && return || echo "Installing $pkg ..."
 	# Install nvim
 	PKG_NAME=$(nvim_pkg_name)
 	TAR_FILE=${PKG_NAME}.tar.gz
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/"${TAR_FILE}"
-	echo "$0: Neovim downloaded.."
+	version=$(get_nvim_version)
+	if [ "$version" == "latest" ]; then
+		curl -LO https://github.com/neovim/neovim/releases/latest/download/"${TAR_FILE}"
+	else
+		curl -LO https://github.com/neovim/neovim/releases/download/${version}/"${TAR_FILE}"
+	fi
+
+	echo "$0: Neovim${version}  downloaded.."
 	mkdir -p ~/.local
 	rm -rf ~/.local/nvim
 	tar -xzf "${TAR_FILE}"
@@ -142,11 +180,11 @@ __install_mambapkg() {
 	micromamba install "$1" -c conda-forge -n base -y
 }
 
-#install_shellcheck(){
-# pkg=shellcheck
-# command_exists "$pkg" && return || echo "Installing $pkg ..."
-#    __install_mambapkg shellcheck
-#}
+install_shellcheck() {
+	pkg=shellcheck
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	__install_mambapkg shellcheck
+}
 
 install_shfmt() {
 	pkg=shfmt
