@@ -148,10 +148,10 @@ __install_mambapkg() {
 #    __install_mambapkg shellcheck
 #}
 
-install_shfmt(){
- pkg=shfmt
- command_exists "$pkg" && return || echo "Installing $pkg ..."
- curl -sS https://webi.sh/shfmt | sh
+install_shfmt() {
+	pkg=shfmt
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	curl -sS https://webi.sh/shfmt | sh
 }
 
 install_fzf() {
