@@ -41,6 +41,9 @@ end)
 
 vim.opt.mouse = ""
 
+-- lua format
+vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/snippets"
+
 -- Define a new autocommand group
 vim.api.nvim_create_augroup("CylcSyntax", { clear = true })
 
@@ -54,6 +57,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = "CylcSyntax",
 })
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 vim.api.nvim_exec(
 	[[
     autocmd FileType cylc setlocal shiftwidth=4
@@ -62,3 +69,33 @@ vim.api.nvim_exec(
   ]],
 	true
 )
+
+-- Function to set filetype based on shebang if no filetype is detected
+local function set_filetype_from_shebang()
+	-- Only proceed if filetype is not already set
+	if vim.bo.filetype == "" then
+		-- Read the first line of the file
+		local firstline = vim.fn.getline(1)
+		-- Check for different shebangs and set the filetype accordingly
+		if string.match(firstline, "^#!.*python") then
+			vim.bo.filetype = "python"
+		elseif string.match(firstline, "^#!.*perl") then
+			vim.bo.filetype = "perl"
+		elseif string.match(firstline, "^#!.*ruby") then
+			vim.bo.filetype = "ruby"
+		elseif string.match(firstline, "^#!.*bash") then
+			vim.bo.filetype = "sh"
+		elseif string.match(firstline, "^#!.*sh") then
+			vim.bo.filetype = "sh"
+		elseif string.match(firstline, "^#!.*zsh") then
+			vim.bo.filetype = "zsh"
+		end
+	end
+end
+
+-- Autocommand to call the function after initial filetype detection
+vim.api.nvim_create_augroup("ShebangFiletype", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+	pattern = "*",
+	callback = set_filetype_from_shebang,
+})

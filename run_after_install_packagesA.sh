@@ -169,6 +169,15 @@ install_npm() {
 	nvm install --lts
 }
 
+install_python_lsp_server() {
+	pkg="pylsp"
+	command_exists "$pkg" && return || echo "Installing $pkg ..."
+	micromamba activate base
+	pip install -U setuptools
+	pip install "python-lsp-server[all]"
+	pip install python-lsp-ruff pylsp-mypy python-lsp-isort python-lsp-black
+}
+
 install_bash_language_server() {
 	pkg="bash-language-server"
 	command_exists "$pkg" && return || echo "Installing $pkg ..."

@@ -4,3 +4,11 @@
 [merge]
     command = "nvim"
     args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}" ]
+
+[diff]
+    exclude = ["scripts"]
+
+[git]
+    autoCommit = true
+    autoPush = true
+    commitMessageTemplate = "{{ "{{" }} promptSting \"Commit message\" {{ "}}" }}"

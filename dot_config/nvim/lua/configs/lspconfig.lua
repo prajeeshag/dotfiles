@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
-local servers = { "bashls", "ruff_lsp", "fortls", "lua_ls" }
+local servers = { "bashls", "fortls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -32,4 +32,33 @@ require("lspconfig").lua_ls.setup({
 			},
 		},
 	},
+})
+
+lspconfig.pylsp.setup({
+	on_attach = on_attach,
+	settings = {
+		pylsp = {
+			plugins = {
+				-- formatter options
+				black = { enabled = true },
+				autopep8 = { enabled = false },
+				yapf = { enabled = false },
+				-- linter options
+				pylint = { enabled = false, executable = "pylint" },
+				pyflakes = { enabled = false },
+				pycodestyle = { enabled = false },
+				ruff = { enabled = true, formatEnabled = true, executable = "ruff" },
+				-- type checker
+				pylsp_mypy = { enabled = false },
+				-- auto-completion options
+				jedi_completion = { fuzzy = true },
+				-- import sorting
+				pyls_isort = { enabled = false },
+			},
+		},
+	},
+	flags = {
+		debounce_text_changes = 200,
+	},
+	capabilities = capabilities,
 })
