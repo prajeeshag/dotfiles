@@ -199,6 +199,7 @@ install_autotools_ls() {
     pkg=autotools-language-server
     command_exists "$pkg" && return || echo "Installing $pkg ..."
     micromamba activate base
+    micromamba install pip
     pip install $pkg tree-sitter==0.21.3
 
 }
