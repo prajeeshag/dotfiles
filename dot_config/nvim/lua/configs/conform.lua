@@ -7,6 +7,7 @@ local options = {
 		["_"] = { "trim_whitespace" },
 		-- css = { "prettier" },
 		-- html = { "prettier" },
+		yaml = { "prettier" },
 	},
 
 	format_on_save = {
