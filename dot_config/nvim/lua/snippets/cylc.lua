@@ -7,9 +7,9 @@ return {
 			"[task parameters]",
 			"",
 			"[scheduling]",
-			"   initial cycle point = ",
-			"   final cycle point = ",
-			"   [[graph]]",
+			"    initial cycle point = ",
+			"    final cycle point = ",
+			"    [[graph]]",
 			"",
 			"[runtime]",
 		})
