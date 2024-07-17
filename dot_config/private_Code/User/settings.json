@@ -20,7 +20,7 @@
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
             "source.organizeImports.ruff": "explicit"
-        },
+        }
     },
     "editor.minimap.enabled": false,
     "git.suggestSmartCommit": false,
@@ -35,3 +35,4 @@
     "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontLigatures": true
 }
+
