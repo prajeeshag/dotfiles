@@ -1,0 +1,18 @@
+{
+    "workbench.colorTheme": "Material Theme Darker",
+    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "editor.lineHeight": 28,
+    "editor.fontLigatures": "'ss01','ss05','dlig'",
+    "editor.fontFamily": "'FiraCode Nerd Font','Droid Sans Mono', 'monospace', monospace",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.ruff": "explicit"
+        },
+    }
+}
