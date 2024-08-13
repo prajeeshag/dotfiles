@@ -256,7 +256,7 @@ __main() {
     line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
     add_to_shellrc "$line"
 
-    line='[ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && tmux new-session -As0'
+    line='[ -n "$SSH_CONNECTION" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$TMUX" ] && tmux new-session -As0'
     add_to_shellrc "$line"
 }
 
