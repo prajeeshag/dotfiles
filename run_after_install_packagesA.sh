@@ -225,6 +225,12 @@ install_rg() {
     curl -sS https://webi.sh/rg | sh
 }
 
+install_uv() {
+    pkg=uv
+    command_exists "$pkg" && return || echo "Installing $pkg ..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
 __run_install() {
     # List all functions starting with install_
     install_functions=$(declare -F | awk '{print $3}' | grep '^install_')
