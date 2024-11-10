@@ -148,8 +148,6 @@ install_micromamba() {
     pkg=micromamba
     command_exists "$pkg" && return || echo "Installing $pkg ..."
     "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
-    line='export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH'
-    add_to_shellrc "$line"
 }
 
 source_nvmsh() {
